@@ -1,0 +1,10 @@
+namespace: my-app-staging
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+- ../../base
+images:
+- name: my-app
+  newName: gcr.io/my-platform/my-app
+patchesStrategicMerge:
+- pod.yaml
