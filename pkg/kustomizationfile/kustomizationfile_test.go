@@ -58,7 +58,7 @@ func TestGetFromDirectory(t *testing.T) {
 	if err != nil {
 		t.Error("Working directory could not be retrieved.")
 	}
-	overlayDir := workingDir + "./../../demo/overlays/"
+	overlayDir := workingDir + "./../../sample/overlays/"
 	fmt.Printf("overlay directory: %v\n", overlayDir)
 
 	kustomizationFileContext := New()
