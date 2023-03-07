@@ -1,4 +1,4 @@
-module github.com/jpreese/kustomize-graph
+module github.com/dv0gt/kustomize-graph-md
 
 go 1.12
 

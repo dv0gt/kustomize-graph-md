@@ -2,12 +2,19 @@ package main
 
 import (
 	"fmt"
+	"os"
 
-	"github.com/jpreese/kustomize-graph/pkg/kustomizationgraph"
+	"github.com/dv0gt/kustomize-graph-md/pkg/kustomizationgraph"
 )
 
 func main() {
-	graph, err := kustomizationgraph.New("main").Generate()
+	workingDir, err := os.Getwd()
+	if err != nil {
+		panic(err)
+	}
+
+	graph, err := kustomizationgraph.New().BuildGraph(workingDir)
+
 	if err != nil {
 		panic(err)
 	}
