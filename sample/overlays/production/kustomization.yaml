@@ -7,4 +7,4 @@ images:
 - name: my-app
   newName: gcr.io/my-platform/my-app
 patchesStrategicMerge:
-- pod.yaml
+- patch.yaml

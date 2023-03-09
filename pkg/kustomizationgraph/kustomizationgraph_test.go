@@ -22,10 +22,20 @@ func TestSampleMarkDownGraph(t *testing.T) {
 	}
 
 	expected := "```mermaid" + `
-  flowchart LR
-    A[./demo/overlays] --> |include| B(./production)
-    A --> |include| C(./staging)
-    C --> |include| D(../../base)
+flowchart TD
+
+subgraph overlays/production
+P0{{kustomization.yaml}}
+P0 --> |patchesStrategicMerge| P(patch.yaml)
+
+subgraph base
+direction TB
+E0{{kustomization.yaml}}
+E0 --> |resources| E(deployment.yaml)
+end
+
+P0 --> |resources| base
+end
 	` + "```"
 
 	assert.Equal(t, expected, markdown)
