@@ -4,14 +4,14 @@ import (
 	"os"
 	"testing"
 
-	"github.com/dv0gt/kustomize-graph-md/pkg/kustomizationfile"
+	"github.com/dv0gt/kustomize-graph-md/pkg/kustomizationcontext"
 	"github.com/stretchr/testify/assert"
 )
 
 func TestSampleMarkDownGraph(t *testing.T) {
 
-	kustomizationFileContext := kustomizationfile.New()
-	graph := New(kustomizationFileContext)
+	kustomizationContext := kustomizationcontext.NewContext()
+	graph := NewGraph(kustomizationContext)
 
 	workingDir, _ := os.Getwd()
 	entryPath := workingDir + "./../../sample/overlays/"

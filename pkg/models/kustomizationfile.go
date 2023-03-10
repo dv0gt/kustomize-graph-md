@@ -1,4 +1,4 @@
-package kustomizationfile
+package models
 
 type KustomizationFile struct {
 	Bases                 []string                     `yaml:"bases"`

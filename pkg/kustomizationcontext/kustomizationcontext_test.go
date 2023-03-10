@@ -1,4 +1,4 @@
-package kustomizationfile
+package kustomizationcontext
 
 import (
 	"fmt"
@@ -20,7 +20,7 @@ func TestNoKustomizationFiles(t *testing.T) {
 	fakeFileSystem := afero.NewMemMapFs()
 	fakeFileSystem.Mkdir("app", 0755)
 
-	_, err := NewFromFileSystem(fakeFileSystem).GetFromDirectory("app")
+	_, err := NewContextFromFileSystem(fakeFileSystem).GetFromDirectory("app")
 
 	if err == nil {
 		t.Errorf("Expected error when reading directory that contains no kustomization files")
@@ -42,7 +42,7 @@ func TestMultipleKustomizationFiles(t *testing.T) {
 
 	afero.WriteFile(fakeFileSystem, "app/kustomization.yaml", []byte(emptyFileContents), 0644)
 	afero.WriteFile(fakeFileSystem, "app/kustomization.yml", []byte(emptyFileContents), 0644)
-	_, err := NewFromFileSystem(fakeFileSystem).GetFromDirectory("app")
+	_, err := NewContextFromFileSystem(fakeFileSystem).GetFromDirectory("app")
 
 	if err == nil {
 		t.Errorf("Expected error when reading directory that contains multiple kustomization files")
@@ -61,7 +61,7 @@ func TestGetFromDirectory(t *testing.T) {
 	overlayDir := workingDir + "./../../sample/overlays/"
 	fmt.Printf("overlay directory: %v\n", overlayDir)
 
-	kustomizationFileContext := New()
+	kustomizationFileContext := NewContext()
 	kustomizationFile, err := kustomizationFileContext.GetFromDirectory(overlayDir)
 
 	if err != nil {

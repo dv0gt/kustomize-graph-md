@@ -1,40 +1,41 @@
-package kustomizationfile
+package kustomizationcontext
 
 import (
 	"path"
 
+	"github.com/dv0gt/kustomize-graph-md/pkg/models"
 	"github.com/pkg/errors"
 	"github.com/spf13/afero"
 	"gopkg.in/yaml.v2"
 )
 
-type kustomizationFileContext struct {
+type KustomizationContext struct {
 	fileSystem afero.Fs
 }
 
 // New returns a new context to interact with kustomization files
-func New() *kustomizationFileContext {
+func NewContext() *KustomizationContext {
 	defaultFileSystem := afero.NewOsFs()
 
-	return NewFromFileSystem(defaultFileSystem)
+	return NewContextFromFileSystem(defaultFileSystem)
 }
 
 // NewFromFileSystem creates a context to interact with kustomization files from a provided file system
-func NewFromFileSystem(fileSystem afero.Fs) *kustomizationFileContext {
-	return &kustomizationFileContext{
+func NewContextFromFileSystem(fileSystem afero.Fs) *KustomizationContext {
+	return &KustomizationContext{
 		fileSystem: fileSystem,
 	}
 }
 
 // GetFromDirectory attempts to read a kustomization.yaml file from the given directory
-func (k *kustomizationFileContext) GetFromDirectory(directoryPath string) (*KustomizationFile, error) {
-	var kustomizationFile KustomizationFile
+func (k *KustomizationContext) GetFromDirectory(directoryPath string) (*models.KustomizationFile, error) {
+	var kustomizationFile models.KustomizationFile
 
 	fileUtility := &afero.Afero{Fs: k.fileSystem}
 
 	fileFoundCount := 0
 	kustomizationFilePath := ""
-	for _, kustomizationFile := range KustomizationFileNames {
+	for _, kustomizationFile := range models.KustomizationFileNames {
 		currentPath := path.Join(directoryPath, kustomizationFile)
 
 		exists, err := fileUtility.Exists(currentPath)
