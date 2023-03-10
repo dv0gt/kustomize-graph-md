@@ -1,6 +1,7 @@
 package kustomizationgraph
 
 import (
+	"fmt"
 	"os"
 	"testing"
 
@@ -14,7 +15,7 @@ func TestSampleMarkDownGraph(t *testing.T) {
 	graph := NewGraph(kustomizationContext)
 
 	workingDir, _ := os.Getwd()
-	entryPath := workingDir + "./../../sample/overlays/"
+	entryPath := workingDir + "./../../sample/overlays/production"
 	markdown, err := graph.BuildGraph(entryPath)
 
 	if err != nil {
@@ -37,6 +38,8 @@ end
 P0 --> |resources| base
 end
 	` + "```"
+
+	fmt.Println(markdown)
 
 	assert.Equal(t, expected, markdown)
 }
