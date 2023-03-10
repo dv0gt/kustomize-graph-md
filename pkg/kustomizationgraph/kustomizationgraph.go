@@ -42,6 +42,7 @@ func (g *KustomizationGraph) BuildGraph(entryPath string) (string, error) {
 func (g *KustomizationGraph) addSubGraph(directory string, subGraphName string) (string, error) {
 	start := "K" + hash(directory)
 	markdown := "\nsubgraph " + subGraphName
+	markdown += "\ndirection TB"
 	markdown += "\n" + start + "{{kustomization.yaml}}"
 
 	file, err := g.kustomizationContext.GetFromDirectory(directory)
@@ -53,7 +54,7 @@ func (g *KustomizationGraph) addSubGraph(directory string, subGraphName string) 
 		markdown += "\n" + start + " --> |patchesStrategicMerge| " + start + "P" + fmt.Sprint(i) + "(" + p + ")"
 	}
 
-	for _, r := range file.Resources {
+	for i, r := range file.Resources {
 		resourcePath := directory + "/" + r
 		file, _ = g.kustomizationContext.GetFromDirectory(resourcePath)
 
@@ -64,8 +65,13 @@ func (g *KustomizationGraph) addSubGraph(directory string, subGraphName string) 
 			}
 			markdown += subgraph
 			markdown += "\n" + start + " --> |resources| " + r
+			continue
 		}
+
+		// regular resource file (no kustomization.yaml)
+		markdown += "\n" + start + " --> " + start + "R" + fmt.Sprint(i) + "(" + r + ")"
 	}
+
 	markdown += "\nend"
 
 	return markdown, err
