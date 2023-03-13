@@ -26,23 +26,23 @@ func NewGraph(kustomizeContext KustomizationContext) *KustomizationGraph {
 func (g *KustomizationGraph) BuildGraph(entryPath string) (string, error) {
 
 	markdown := "```mermaid"
-	markdown += "\nflowchart TD"
+	markdown += addLine("flowchart LR")
 
 	subgraph, err := g.addSubGraph(entryPath, filepath.Base(entryPath))
 	if err != nil {
 		return "", err
 	}
 	markdown += subgraph
-	markdown += "\n```"
+	markdown += addLine("```")
 
 	return markdown, nil
 }
 
 func (g *KustomizationGraph) addSubGraph(directory string, subGraphName string) (string, error) {
 	start := "K" + util.Hash(directory)
-	markdown := "\nsubgraph " + subGraphName
-	markdown += "\ndirection TB"
-	markdown += "\n" + start + "{{kustomization.yaml}}"
+	markdown := addLine("subgraph " + subGraphName)
+	markdown += addLine("direction LR")
+	markdown += addLine(start + "{{kustomization.yaml}}")
 
 	file, err := g.kustomizationContext.GetFromDirectory(directory)
 	if err != nil {
@@ -59,15 +59,19 @@ func (g *KustomizationGraph) addSubGraph(directory string, subGraphName string) 
 				return "", err
 			}
 			markdown += subgraph
-			markdown += "\n" + start + " --> |resources| " + r
+			markdown += addLine(start + " --> |resources| " + r)
 			continue
 		}
 
 		// regular resource file (no kustomization.yaml)
-		markdown += "\n" + start + " --> " + start + "R" + fmt.Sprint(i) + "(" + r + ")"
+		markdown += addLine(start + " --> " + start + "R" + fmt.Sprint(i) + "(" + r + ")")
 	}
 
-	markdown += "\nend"
+	markdown += addLine("end")
 
 	return markdown, err
+}
+
+func addLine(line string) string {
+	return "\n" + line
 }

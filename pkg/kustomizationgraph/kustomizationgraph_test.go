@@ -24,12 +24,12 @@ func TestSampleMarkDownGraph(t *testing.T) {
 	}
 
 	expected := "```mermaid" + `
-flowchart TD
+flowchart LR
 subgraph production
-direction TB
+direction LR
 K` + util.Hash(entryPath) + `{{kustomization.yaml}}
 subgraph ../../base
-direction TB
+direction LR
 K` + util.Hash(entryPath+"/../../base") + `{{kustomization.yaml}}
 K` + util.Hash(entryPath+"/../../base") + ` --> K` + util.Hash(entryPath+"/../../base") + `R0(deployment.yaml)
 end
