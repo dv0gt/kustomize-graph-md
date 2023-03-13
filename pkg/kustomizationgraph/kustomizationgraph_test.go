@@ -6,6 +6,7 @@ import (
 	"testing"
 
 	"github.com/dv0gt/kustomize-graph-md/pkg/kustomizationcontext"
+	"github.com/dv0gt/kustomize-graph-md/pkg/util"
 	"github.com/stretchr/testify/assert"
 )
 
@@ -24,20 +25,17 @@ func TestSampleMarkDownGraph(t *testing.T) {
 
 	expected := "```mermaid" + `
 flowchart TD
-
-subgraph overlays/production
-P0{{kustomization.yaml}}
-P0 --> |patchesStrategicMerge| P(patch.yaml)
-
-subgraph base
+subgraph production
 direction TB
-E0{{kustomization.yaml}}
-E0 --> |resources| E(deployment.yaml)
+K` + util.Hash(entryPath) + `{{kustomization.yaml}}
+subgraph ../../base
+direction TB
+K` + util.Hash(entryPath+"/../../base") + `{{kustomization.yaml}}
+K` + util.Hash(entryPath+"/../../base") + ` --> K` + util.Hash(entryPath+"/../../base") + `R0(deployment.yaml)
 end
-
-P0 --> |resources| base
+K` + util.Hash(entryPath) + ` --> |resources| ../../base
 end
-	` + "```"
+` + "```"
 
 	fmt.Println(markdown)
 

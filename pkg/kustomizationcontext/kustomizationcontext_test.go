@@ -72,6 +72,4 @@ func TestGetFromDirectory(t *testing.T) {
 	assert.Equal(t, "Kustomization", kustomizationFile.Kind)
 	assert.Equal(t, "./production", kustomizationFile.Resources[0])
 	assert.Equal(t, "./staging", kustomizationFile.Resources[1])
-	assert.Equal(t, "my-app", kustomizationFile.Images[0].Name)
-	assert.Equal(t, "gcr.io/my-platform/my-app", kustomizationFile.Images[0].NewName)
 }

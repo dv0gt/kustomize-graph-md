@@ -2,11 +2,10 @@ package kustomizationgraph
 
 import (
 	"fmt"
-	"hash/fnv"
 	"path/filepath"
-	"strconv"
 
 	"github.com/dv0gt/kustomize-graph-md/pkg/models"
+	"github.com/dv0gt/kustomize-graph-md/pkg/util"
 	"github.com/pkg/errors"
 )
 
@@ -40,7 +39,7 @@ func (g *KustomizationGraph) BuildGraph(entryPath string) (string, error) {
 }
 
 func (g *KustomizationGraph) addSubGraph(directory string, subGraphName string) (string, error) {
-	start := "K" + hash(directory)
+	start := "K" + util.Hash(directory)
 	markdown := "\nsubgraph " + subGraphName
 	markdown += "\ndirection TB"
 	markdown += "\n" + start + "{{kustomization.yaml}}"
@@ -48,10 +47,6 @@ func (g *KustomizationGraph) addSubGraph(directory string, subGraphName string) 
 	file, err := g.kustomizationContext.GetFromDirectory(directory)
 	if err != nil {
 		return "", errors.Wrapf(err, "Unable to get kustomization file from given directory %v", directory)
-	}
-
-	for i, p := range file.PatchesStrategicMerge {
-		markdown += "\n" + start + " --> |patchesStrategicMerge| " + start + "P" + fmt.Sprint(i) + "(" + p + ")"
 	}
 
 	for i, r := range file.Resources {
@@ -75,10 +70,4 @@ func (g *KustomizationGraph) addSubGraph(directory string, subGraphName string) 
 	markdown += "\nend"
 
 	return markdown, err
-}
-
-func hash(s string) string {
-	h := fnv.New32a()
-	h.Write([]byte(s))
-	return strconv.FormatUint(uint64(h.Sum32()), 10)
 }

@@ -1,7 +1,8 @@
 #!/bin/bash
 
-BINARY_NAME=kgraph-1.0
+BINARY_NAME=kustomize_md
+BINARY_VERSION=v1
 
-env GOOS=windows GOARCH=amd64 go build -o ${BINARY_NAME}-windows.exe ./cmd/main.go
-env GOOS=linux GOARCH=amd64 go build -o ${BINARY_NAME}-linux ./cmd/main.go
+env GOOS=windows GOARCH=amd64 go build -o ${BINARY_NAME}_windows_${BINARY_VERSION}.exe ./cmd/main.go
+env GOOS=linux GOARCH=amd64 go build -o ${BINARY_NAME}_linux_${BINARY_VERSION} ./cmd/main.go
 

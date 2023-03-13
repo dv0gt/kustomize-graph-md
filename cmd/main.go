@@ -16,7 +16,8 @@ func main() {
 
 	kustomizationCtx := kustomizationcontext.NewContext()
 
-	graph, err := kustomizationgraph.NewGraph(kustomizationCtx).BuildGraph(workingDir)
+	kustomizationGraph := kustomizationgraph.NewGraph(kustomizationCtx)
+	graph, err := kustomizationGraph.BuildGraph(workingDir)
 
 	if err != nil {
 		panic(err)
