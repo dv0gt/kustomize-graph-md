@@ -1,19 +1,26 @@
 package kustomizationgraph
 
 import (
-	"fmt"
 	"os"
 	"testing"
 
 	"github.com/dv0gt/kustomize-graph-md/pkg/kustomizationcontext"
+	"github.com/dv0gt/kustomize-graph-md/pkg/models"
 	"github.com/dv0gt/kustomize-graph-md/pkg/util"
 	"github.com/stretchr/testify/assert"
 )
 
-func TestSampleMarkDownGraph(t *testing.T) {
+func TestSampleMarkDownGraph_LR(t *testing.T) {
+	assertSampleMarkdownGraph(t, models.LeftRight)
+}
 
+func TestSampleMarkDownGraph_TB(t *testing.T) {
+	assertSampleMarkdownGraph(t, models.TopBottom)
+}
+
+func assertSampleMarkdownGraph(t *testing.T, mode models.DisplayMode) {
 	kustomizationContext := kustomizationcontext.NewContext()
-	graph := NewGraph(kustomizationContext)
+	graph := NewGraphWithDisplayMode(kustomizationContext, mode)
 
 	workingDir, _ := os.Getwd()
 	entryPath := workingDir + "./../../sample/overlays/production"
@@ -24,12 +31,12 @@ func TestSampleMarkDownGraph(t *testing.T) {
 	}
 
 	expected := "```mermaid" + `
-flowchart LR
+flowchart ` + mode.ToString() + `
 subgraph production
-direction LR
+direction ` + mode.ToString() + `
 K` + util.Hash(entryPath) + `{{kustomization.yaml}}
 subgraph ../../base
-direction LR
+direction ` + mode.ToString() + `
 K` + util.Hash(entryPath+"/../../base") + `{{kustomization.yaml}}
 K` + util.Hash(entryPath+"/../../base") + ` --> K` + util.Hash(entryPath+"/../../base") + `R0(deployment.yaml)
 end
@@ -37,7 +44,7 @@ K` + util.Hash(entryPath) + ` --> |resources| ../../base
 end
 ` + "```"
 
-	fmt.Println(markdown)
+	// fmt.Println(markdown)
 
 	assert.Equal(t, expected, markdown)
 }

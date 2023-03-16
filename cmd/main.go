@@ -1,12 +1,16 @@
 package main
 
 import (
+	"flag"
 	"fmt"
 	"os"
 
 	"github.com/dv0gt/kustomize-graph-md/pkg/kustomizationcontext"
 	"github.com/dv0gt/kustomize-graph-md/pkg/kustomizationgraph"
+	"github.com/dv0gt/kustomize-graph-md/pkg/models"
 )
+
+var isTopDownFlag = flag.Bool("tb", false, "if set, markdown graph will be oriented top-to-bottom.")
 
 func main() {
 	workingDir, err := os.Getwd()
@@ -14,9 +18,14 @@ func main() {
 		panic(err)
 	}
 
-	kustomizationCtx := kustomizationcontext.NewContext()
+	flag.Parse()
+	displayMode := models.LeftRight
+	if *isTopDownFlag {
+		displayMode = models.TopDown
+	}
 
-	kustomizationGraph := kustomizationgraph.NewGraph(kustomizationCtx)
+	kustomizationCtx := kustomizationcontext.NewContext()
+	kustomizationGraph := kustomizationgraph.NewGraphWithDisplayMode(kustomizationCtx, displayMode)
 	graph, err := kustomizationGraph.BuildGraph(workingDir)
 
 	if err != nil {

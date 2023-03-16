@@ -15,18 +15,24 @@ type KustomizationContext interface {
 
 type KustomizationGraph struct {
 	kustomizationContext KustomizationContext
+	displayMode          models.DisplayMode
 }
 
 func NewGraph(kustomizeContext KustomizationContext) *KustomizationGraph {
+	return NewGraphWithDisplayMode(kustomizeContext, models.LeftRight)
+}
+
+func NewGraphWithDisplayMode(kustomizeContext KustomizationContext, displayMode models.DisplayMode) *KustomizationGraph {
 	return &KustomizationGraph{
 		kustomizationContext: kustomizeContext,
+		displayMode:          displayMode,
 	}
 }
 
 func (g *KustomizationGraph) BuildGraph(entryPath string) (string, error) {
 
 	markdown := "```mermaid"
-	markdown += addLine("flowchart LR")
+	markdown += addLine("flowchart " + g.displayMode.ToString())
 
 	subgraph, err := g.addSubGraph(entryPath, filepath.Base(entryPath))
 	if err != nil {
@@ -41,7 +47,7 @@ func (g *KustomizationGraph) BuildGraph(entryPath string) (string, error) {
 func (g *KustomizationGraph) addSubGraph(directory string, subGraphName string) (string, error) {
 	start := "K" + util.Hash(directory)
 	markdown := addLine("subgraph " + subGraphName)
-	markdown += addLine("direction LR")
+	markdown += addLine("direction " + g.displayMode.ToString())
 	markdown += addLine(start + "{{kustomization.yaml}}")
 
 	file, err := g.kustomizationContext.GetFromDirectory(directory)

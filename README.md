@@ -10,19 +10,15 @@ Run the following steps:
 * Navigate to the directory, where your `kustomization.yaml` file is located
 * Run the executable file you created previously inside that directory
 
-Example:
-```sh
-
-cd ./sample/overlays/production/
-
-./<path_to_executable>/kustimzation-markdown
-
-```
-
 By now, the resulting markdown syntax will be printed on your console. So take that and put it in your readme.md for instance.
 
-Example:
+## Create Left-To-Right oriented graph
 
+```sh
+kustomize-markdown
+```
+
+Output:
 <pre>
 ```mermaid
 flowchart LR
@@ -48,6 +44,45 @@ direction LR
 K4108157276{{kustomization.yaml}}
 subgraph ../../base
 direction LR
+K2125297382{{kustomization.yaml}}
+K2125297382 --> K2125297382R0(deployment.yaml)
+end
+K4108157276 --> |resources| ../../base
+end
+```
+
+## Create Top-To-Bottom oriented graph
+
+```sh
+kustomize-markdown -tb
+```
+
+Output:
+<pre>
+```mermaid
+flowchart TB
+subgraph production
+direction TB
+K4108157276{{kustomization.yaml}}
+subgraph ../../base
+direction TB
+K2125297382{{kustomization.yaml}}
+K2125297382 --> K2125297382R0(deployment.yaml)
+end
+K4108157276 --> |resources| ../../base
+end
+```
+</pre>
+
+Which results in the following graph:
+
+```mermaid
+flowchart TB
+subgraph production
+direction TB
+K4108157276{{kustomization.yaml}}
+subgraph ../../base
+direction TB
 K2125297382{{kustomization.yaml}}
 K2125297382 --> K2125297382R0(deployment.yaml)
 end
