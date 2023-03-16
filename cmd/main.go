@@ -21,7 +21,7 @@ func main() {
 	flag.Parse()
 	displayMode := models.LeftRight
 	if *isTopDownFlag {
-		displayMode = models.TopDown
+		displayMode = models.TopBottom
 	}
 
 	kustomizationCtx := kustomizationcontext.NewContext()
