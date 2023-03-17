@@ -1,49 +1,30 @@
 # Kustomize Markdown Graph
 
-## Local binary build
+## Binary build
 
-For local build, run `./build.sh` on your machine.
+For local build, run `./build.sh` on your machine. This will create linux and windows executables with the name `kustomize-markdown`.
 
-## Local binary execution
+## Binary execution
 
 Run the following steps:
 * Navigate to the directory, where your `kustomization.yaml` file is located
 * Run the executable file you created previously inside that directory
 
-By now, the resulting markdown syntax will be printed on your console. So take that and put it in your README.md.
+By now, the resulting markdown will be printed on your console.
 
-## Create Left-Right oriented graph
-
-Run the follwoing command in a directory which contains a `kustomization.yaml` file.
+### Graph generation
 
 ```sh
+# Left-Right oriented graph
 kustomize-markdown
+
+# Top-Down oriented graph
+kustomize-markdown -td
 ```
 
-Example:
+Which results in the following graphs:
 
-If you want to try that out, go to the directory `./sample/overlays/production/` in this repository and run the above command.
-
-You should now see the below output on your console:
-
-<pre>
-```mermaid
-flowchart LR
-subgraph production
-direction LR
-K4108157276{{kustomization.yaml}}
-subgraph ../../base
-direction LR
-K2125297382{{kustomization.yaml}}
-K2125297382 --> K2125297382R0(deployment.yaml)
-end
-K4108157276 --> |resources| ../../base
-end
-```
-</pre>
-
-Which results in the following graph:
-
+Left-Right
 ```mermaid
 flowchart LR
 subgraph production
@@ -58,16 +39,7 @@ K4108157276 --> |resources| ../../base
 end
 ```
 
-## Create Top-Bottom oriented graph
-
-If you want to have a graph which is oriented from top to bottom, append `-td` to the command:
-
-```sh
-kustomize-markdown -tb
-```
-
-Which results in the following graph:
-
+Top-Down
 ```mermaid
 flowchart TB
 subgraph production
