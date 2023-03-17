@@ -22,9 +22,27 @@ kustomize-markdown
 kustomize-markdown -td
 ```
 
-Which results in the following graphs:
+### Examples
+
+The examples below are related to the sample included in this repository which are located in `./sample/overlays/production/`.
 
 Left-Right
+<pre>
+```mermaid
+flowchart LR
+subgraph production
+direction LR
+K4108157276{{kustomization.yaml}}
+subgraph ../../base
+direction LR
+K2125297382{{kustomization.yaml}}
+K2125297382 --> K2125297382R0(deployment.yaml)
+end
+K4108157276 --> |resources| ../../base
+end
+```
+</pre>
+
 ```mermaid
 flowchart LR
 subgraph production
@@ -40,6 +58,7 @@ end
 ```
 
 Top-Down
+<pre>
 ```mermaid
 flowchart TB
 subgraph production
@@ -53,4 +72,18 @@ end
 K4108157276 --> |resources| ../../base
 end
 ```
+</pre>
 
+```mermaid
+flowchart TB
+subgraph production
+direction TB
+K4108157276{{kustomization.yaml}}
+subgraph ../../base
+direction TB
+K2125297382{{kustomization.yaml}}
+K2125297382 --> K2125297382R0(deployment.yaml)
+end
+K4108157276 --> |resources| ../../base
+end
+```
