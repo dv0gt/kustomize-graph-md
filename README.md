@@ -10,7 +10,7 @@ Run the following steps:
 * Navigate to the directory, where your `kustomization.yaml` file is located
 * Run the executable file you created previously inside that directory
 
-By now, the resulting markdown syntax will be printed on your console. So take that and put it in your readme.md for instance.
+By now, the resulting markdown syntax will be printed on your console. So take that and put it in your README.md.
 
 ## Create Left-To-Right oriented graph
 
@@ -18,7 +18,7 @@ By now, the resulting markdown syntax will be printed on your console. So take t
 kustomize-markdown
 ```
 
-Output:
+Example output (working direcotry is ./sample/overlays/production/):
 <pre>
 ```mermaid
 flowchart LR
@@ -57,7 +57,7 @@ end
 kustomize-markdown -tb
 ```
 
-Output:
+Example output (working direcotry is ./sample/overlays/production/):
 <pre>
 ```mermaid
 flowchart TB
