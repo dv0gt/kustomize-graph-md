@@ -2,7 +2,12 @@
 
 ## Binary build
 
-For local build, run `./build.sh` on your machine. This will create linux and windows executables with the name `kustomize-markdown`.
+For local build, run `./build.sh` on your machine. This will create a linux executable with the name `kustomize-markdown`.
+
+For easy use, add the binary folder to your `PATH`:
+```sh
+PATH=$PATH:$(pwd)/bin
+```
 
 ## Binary execution
 
@@ -12,21 +17,34 @@ Run the following steps:
 
 By now, the resulting markdown will be printed on your console.
 
-### Graph generation
+## Graph generation
 
 ```sh
 # Left-Right oriented graph
 kustomize-markdown
 
 # Top-Down oriented graph
-kustomize-markdown -td
+kustomize-markdown -tb
 ```
 
-### Examples
+## Examples
 
-The examples below are related to the sample included in this repository which are located in `./sample/overlays/production/`.
+The examples below are related to `./sample/overlays/production/`.
 
-Left-Right
+```sh
+cd ./sample/overlays/production/
+```
+
+**Left-Right**
+
+The command...
+
+```sh
+kustomize-markdown
+```
+
+...will generate the following output...
+
 <pre>
 ```mermaid
 flowchart LR
@@ -43,6 +61,8 @@ end
 ```
 </pre>
 
+...which will create the following graph:
+
 ```mermaid
 flowchart LR
 subgraph production
@@ -57,7 +77,16 @@ K4108157276 --> |resources| ../../base
 end
 ```
 
-Top-Down
+**Top-Down**
+
+The command...
+
+```sh
+kustomize-markdown -tb
+```
+
+...will generate the following output...
+
 <pre>
 ```mermaid
 flowchart TB
@@ -73,6 +102,8 @@ K4108157276 --> |resources| ../../base
 end
 ```
 </pre>
+
+...which will create the following graph:
 
 ```mermaid
 flowchart TB
