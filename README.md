@@ -18,7 +18,7 @@ By now, the resulting markdown syntax will be printed on your console. So take t
 kustomize-markdown
 ```
 
-Example output (working direcotry is ./sample/overlays/production/):
+Example output (working direcotry is `./sample/overlays/production/`):
 <pre>
 ```mermaid
 flowchart LR
@@ -57,7 +57,7 @@ end
 kustomize-markdown -tb
 ```
 
-Example output (working direcotry is ./sample/overlays/production/):
+Example output (working direcotry is `./sample/overlays/production/`):
 <pre>
 ```mermaid
 flowchart TB
