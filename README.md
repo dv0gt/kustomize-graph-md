@@ -1,5 +1,9 @@
 # Kustomize Markdown Graph
 
+## Disclaimer
+
+*At the moment, only kustomize dependencies under the `resources:` section are inlcuded in the resulting markdown graph.*
+
 ## Binary build
 
 For local build, run `./build.sh` on your machine. This will create a linux executable with the name `kustomize-markdown`.
@@ -48,13 +52,14 @@ kustomize-markdown
 <pre>
 ```mermaid
 flowchart LR
-subgraph production
+subgraph ./production
 direction LR
 K4108157276{{kustomization.yaml}}
 subgraph ../../base
 direction LR
 K2125297382{{kustomization.yaml}}
 K2125297382 --> K2125297382R0(deployment.yaml)
+K2125297382 --> K2125297382R1(namespace.yaml)
 end
 K4108157276 --> |resources| ../../base
 end
@@ -65,13 +70,14 @@ end
 
 ```mermaid
 flowchart LR
-subgraph production
+subgraph ./production
 direction LR
 K4108157276{{kustomization.yaml}}
 subgraph ../../base
 direction LR
 K2125297382{{kustomization.yaml}}
 K2125297382 --> K2125297382R0(deployment.yaml)
+K2125297382 --> K2125297382R1(namespace.yaml)
 end
 K4108157276 --> |resources| ../../base
 end
@@ -90,13 +96,14 @@ kustomize-markdown -tb
 <pre>
 ```mermaid
 flowchart TB
-subgraph production
+subgraph ./production
 direction TB
 K4108157276{{kustomization.yaml}}
 subgraph ../../base
 direction TB
 K2125297382{{kustomization.yaml}}
 K2125297382 --> K2125297382R0(deployment.yaml)
+K2125297382 --> K2125297382R1(namespace.yaml)
 end
 K4108157276 --> |resources| ../../base
 end
@@ -107,13 +114,14 @@ end
 
 ```mermaid
 flowchart TB
-subgraph production
+subgraph ./production
 direction TB
 K4108157276{{kustomization.yaml}}
 subgraph ../../base
 direction TB
 K2125297382{{kustomization.yaml}}
 K2125297382 --> K2125297382R0(deployment.yaml)
+K2125297382 --> K2125297382R1(namespace.yaml)
 end
 K4108157276 --> |resources| ../../base
 end

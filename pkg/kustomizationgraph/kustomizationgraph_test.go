@@ -32,13 +32,14 @@ func assertSampleMarkdownGraph(t *testing.T, mode models.DisplayMode) {
 
 	expected := "```mermaid" + `
 flowchart ` + mode.ToString() + `
-subgraph production
+subgraph ./production
 direction ` + mode.ToString() + `
 K` + util.Hash(entryPath) + `{{kustomization.yaml}}
 subgraph ../../base
 direction ` + mode.ToString() + `
 K` + util.Hash(entryPath+"/../../base") + `{{kustomization.yaml}}
 K` + util.Hash(entryPath+"/../../base") + ` --> K` + util.Hash(entryPath+"/../../base") + `R0(deployment.yaml)
+K` + util.Hash(entryPath+"/../../base") + ` --> K` + util.Hash(entryPath+"/../../base") + `R1(namespace.yaml)
 end
 K` + util.Hash(entryPath) + ` --> |resources| ../../base
 end

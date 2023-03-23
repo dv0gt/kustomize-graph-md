@@ -34,7 +34,7 @@ func (g *KustomizationGraph) BuildGraph(entryPath string) (string, error) {
 	markdown := "```mermaid"
 	markdown += addLine("flowchart " + g.displayMode.ToString())
 
-	subgraph, err := g.addSubGraph(entryPath, filepath.Base(entryPath))
+	subgraph, err := g.addSubGraph(entryPath, "./"+filepath.Base(entryPath))
 	if err != nil {
 		return "", err
 	}
