@@ -27,7 +27,7 @@ By now, the resulting markdown will be printed on your console.
 # Left-Right oriented graph
 kustomize-markdown
 
-# Top-Down oriented graph
+# Top-Bottom oriented graph
 kustomize-markdown -tb
 ```
 
