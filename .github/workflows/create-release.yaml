@@ -18,3 +18,13 @@ jobs:
         with:
           tag_name: ${{ github.ref }}
           release_name: Release ${{ github.ref }}
+      - name: Build go binaries
+        uses: wangyoucao577/go-release-action@v1.37
+        with:
+          release_tag: ${{ github.ref }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          goos: linux
+          goarch: amd64
+          project_path: "./cmd/"
+          binary_name: "kustomize-markdown"
+          extra_files: README.md
