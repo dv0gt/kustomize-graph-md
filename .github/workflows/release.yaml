@@ -8,19 +8,17 @@ jobs:
   releases-matrix:
     name: Release Go Binary
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        goos: [linux, windows]
-        goarch: [amd64]
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - name: Run tests
         run: go test ./...
       - uses: wangyoucao577/go-release-action@v1.37
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          goos: ${{ matrix.goos }}
-          goarch: ${{ matrix.goarch }}
+          goos: linux
+          goarch: amd64
           project_path: "./cmd/"
           binary_name: "kustomize-markdown"
           extra_files: README.md
+          md5sum: false
+          sha256sum: true
