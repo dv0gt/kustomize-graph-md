@@ -30,6 +30,5 @@ jobs:
           goarch: ${{ matrix.arch }}
           project_path: "./cmd/"
           binary_name: "kustomize-markdown"
-          extra_files: README.md
           md5sum: false
           sha256sum: true
