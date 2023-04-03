@@ -5,18 +5,28 @@ on:
     types: [created]
 
 jobs:
-  releases-matrix:
-    name: Release Go Binary
+  tests:
+    name: Run tests
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
       - name: Run tests
         run: go test ./...
+
+  build:
+    name: Release Go Binary
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        os: [linxu, darwin]
+        arch: [amd64]
+    steps:
+      - uses: actions/checkout@v3
       - uses: wangyoucao577/go-release-action@v1.37
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          goos: linux
-          goarch: amd64
+          goos: ${{ matrix.os }}
+          goarch: ${{ matrix.arch }}
           project_path: "./cmd/"
           binary_name: "kustomize-markdown"
           extra_files: README.md
