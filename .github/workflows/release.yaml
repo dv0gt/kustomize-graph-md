@@ -14,11 +14,12 @@ jobs:
         run: go test ./...
 
   build:
+    needs: tests
     name: Release Go Binary
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        os: [linxu, darwin]
+        os: [linux, darwin]
         arch: [amd64]
     steps:
       - uses: actions/checkout@v3
