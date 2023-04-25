@@ -28,7 +28,6 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           goos: ${{ matrix.os }}
           goarch: ${{ matrix.arch }}
-          project_path: "./cmd/"
           binary_name: "kustomize-markdown"
           md5sum: false
           sha256sum: true
