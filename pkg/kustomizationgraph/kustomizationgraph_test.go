@@ -1,12 +1,12 @@
 package kustomizationgraph
 
 import (
+	"fmt"
 	"os"
 	"testing"
 
 	"github.com/dv0gt/kustomize-graph-md/pkg/kustomizationcontext"
 	"github.com/dv0gt/kustomize-graph-md/pkg/models"
-	"github.com/dv0gt/kustomize-graph-md/pkg/util"
 	"github.com/stretchr/testify/assert"
 )
 
@@ -32,20 +32,14 @@ func assertSampleMarkdownGraph(t *testing.T, mode models.DisplayMode) {
 
 	expected := "```mermaid" + `
 flowchart ` + mode.ToString() + `
-subgraph ./production
-direction ` + mode.ToString() + `
-K` + util.Hash(entryPath) + `{{kustomization.yaml}}
-subgraph ../../base
-direction ` + mode.ToString() + `
-K` + util.Hash(entryPath+"/../../base") + `{{kustomization.yaml}}
-K` + util.Hash(entryPath+"/../../base") + ` --> K` + util.Hash(entryPath+"/../../base") + `R0(deployment.yaml)
-K` + util.Hash(entryPath+"/../../base") + ` --> K` + util.Hash(entryPath+"/../../base") + `R1(namespace.yaml)
-end
-K` + util.Hash(entryPath) + ` --> |resources| ../../base
-end
+K2648915859 --> K3198009923
+K3198009923 --> K117322154
+K117322154[[./moduleA<br/><br/>deploymentModuleA.yaml]]
+K3198009923[[../../base<br/><br/>deployment.yaml<br/>namespace.yaml]]
+K2648915859[[./production]]
 ` + "```"
 
-	// fmt.Println(markdown)
+	fmt.Println(markdown)
 
 	assert.Equal(t, expected, markdown)
 }

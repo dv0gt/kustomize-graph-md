@@ -1,0 +1,13 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: module-A
+spec:
+  selector:
+    matchLabels:
+      app: module-A
+  template:
+    spec:
+      containers:
+      - name: module-A
+        image: module-A

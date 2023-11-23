@@ -6,7 +6,13 @@
 
 ## Binary build
 
-For local build, run `./build.sh` on your machine. This will create a linux executable with the name `kustomize-markdown`.
+The local build (see below) will create a executable with the name `kustomize-markdown` under `/bin`.
+
+### MacOS
+Run `./build-darwin.sh`.
+
+### Linux
+Run `./build-linux.sh`.
 
 For easy use, add the binary folder to your `PATH`:
 ```sh

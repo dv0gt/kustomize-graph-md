@@ -24,13 +24,13 @@ func main() {
 		displayMode = models.TopBottom
 	}
 
-	kustomizationCtx := kustomizationcontext.NewContext()
-	kustomizationGraph := kustomizationgraph.NewGraphWithDisplayMode(kustomizationCtx, displayMode)
-	graph, err := kustomizationGraph.BuildGraph(workingDir)
+	ctx := kustomizationcontext.NewContext()
+	graphBuilder := kustomizationgraph.NewGraphWithDisplayMode(ctx, displayMode)
+	output, err := graphBuilder.BuildGraph(workingDir)
 
 	if err != nil {
 		panic(err)
 	}
 
-	fmt.Print(graph)
+	fmt.Print(output)
 }
