@@ -61,8 +61,8 @@ kustomize-markdown
 flowchart LR
 K2388409362 --> K1632387892
 K1632387892 --> K244167769
-K244167769[[./moduleA<br/><br/>deploymentModuleA.yaml]]
-K1632387892[[../../base<br/><br/>deployment.yaml<br/>namespace.yaml]]
+K244167769[[./moduleA&lt;br/&gt;&lt;br/&gt;deploymentModuleA.yaml]]
+K1632387892[[../../base&lt;br/&gt;&lt;br/&gt;deployment.yaml&lt;br/&gt;namespace.yaml]]
 K2388409362[[./production]]
 ```
 </pre>
@@ -93,8 +93,8 @@ kustomize-markdown -tb
 flowchart TB
 K2388409362 --> K1632387892
 K1632387892 --> K244167769
-K244167769[[./moduleA<br/><br/>deploymentModuleA.yaml]]
-K1632387892[[../../base<br/><br/>deployment.yaml<br/>namespace.yaml]]
+K244167769[[./moduleA&lt;br/&gt;&lt;br/&gt;deploymentModuleA.yaml]]
+K1632387892[[../../base&lt;br/&gt;&lt;br/&gt;deployment.yaml&lt;br/&gt;namespace.yaml]]
 K2388409362[[./production]]
 ```
 </pre>
@@ -140,7 +140,6 @@ K453883029[[./kubeaudit<br/><br/>kubeaudit-cron-job.yaml<br/>image-automation.ya
 K4134617231 --> K3736359115
 K3736359115 --> K3522928892
 K3522928892 --> K2925748861
-K2925748861[[../crd<br/><br/>bases/azure-networking.platform.markant.com_publicapis.yaml]]
 K3522928892 --> K1445474874
 K1445474874[[../rbac<br/><br/>service_account.yaml<br/>role.yaml<br/>role_binding.yaml<br/>leader_election_role.yaml<br/>leader_election_role_binding.yaml<br/>auth_proxy_service.yaml<br/>auth_proxy_role.yaml<br/>auth_proxy_role_binding.yaml<br/>auth_proxy_client_clusterrole.yaml]]
 K3522928892 --> K3160989825
