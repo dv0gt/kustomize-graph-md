@@ -1,10 +1,14 @@
 # Kustomize Markdown Graph
 
+## Overview
+
+The kustomize markdown graph generater can be used to get a nice graph which shows the resource dependencies of nested kustomization files. The tool outputs a markdown snippet which can be included in a `README` for example.
+
 ## Disclaimer
 
 *At the moment, only kustomize dependencies under the `resources` section are inlcuded in the resulting markdown graph.*
 
-## Binary build
+## Installation
 
 The local build (see below) will create a executable with the name `kustomize-markdown` under `/bin`.
 
@@ -48,26 +52,7 @@ cd ./sample/overlays/production/
 
 **Left-Right**
 
-The command...
-
-```sh
-kustomize-markdown
-```
-
-...will generate the following output...
-
-<pre>
-```mermaid
-flowchart LR
-K2388409362 --> K1632387892
-K1632387892 --> K244167769
-K244167769[[./moduleA&lt;br/&gt;&lt;br/&gt;deploymentModuleA.yaml]]
-K1632387892[[../../base&lt;br/&gt;&lt;br/&gt;deployment.yaml&lt;br/&gt;namespace.yaml]]
-K2388409362[[./production]]
-```
-</pre>
-
-...which will create the following graph:
+Run `kustomize-markdown` to get the following output as markdown:
 
 ```mermaid
 flowchart LR
@@ -80,26 +65,7 @@ K2388409362[[./production]]
 
 **Top-Down**
 
-The command...
-
-```sh
-kustomize-markdown -tb
-```
-
-...will generate the following output...
-
-<pre>
-```mermaid
-flowchart TB
-K2388409362 --> K1632387892
-K1632387892 --> K244167769
-K244167769[[./moduleA&lt;br/&gt;&lt;br/&gt;deploymentModuleA.yaml]]
-K1632387892[[../../base&lt;br/&gt;&lt;br/&gt;deployment.yaml&lt;br/&gt;namespace.yaml]]
-K2388409362[[./production]]
-```
-</pre>
-
-...which will create the following graph:
+Run `kustomize-markdown -tb` to get the following output as markdown:
 
 ```mermaid
 flowchart TB
