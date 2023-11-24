@@ -18,10 +18,13 @@ func TestNoKustomizationFiles(t *testing.T) {
 	//   /app
 
 	fakeFileSystem := afero.NewMemMapFs()
-	fakeFileSystem.Mkdir("app", 0755)
 
-	_, err := NewContextFromFileSystem(fakeFileSystem).GetFromDirectory("app")
+	err := fakeFileSystem.Mkdir("app", 0755)
+	if err != nil {
+		t.Errorf("Couldn't create directory 'app'")
+	}
 
+	_, err = NewContextFromFileSystem(fakeFileSystem).GetFromDirectory("app")
 	if err == nil {
 		t.Errorf("Expected error when reading directory that contains no kustomization files")
 	}
@@ -37,13 +40,24 @@ func TestMultipleKustomizationFiles(t *testing.T) {
 	//   └── kustomization.yml
 
 	fakeFileSystem := afero.NewMemMapFs()
-	fakeFileSystem.Mkdir("app", 0755)
+	err := fakeFileSystem.Mkdir("app", 0755)
+	if err != nil {
+		t.Errorf("Couldn't create directory 'app'")
+	}
+
 	emptyFileContents := ""
 
-	afero.WriteFile(fakeFileSystem, "app/kustomization.yaml", []byte(emptyFileContents), 0644)
-	afero.WriteFile(fakeFileSystem, "app/kustomization.yml", []byte(emptyFileContents), 0644)
-	_, err := NewContextFromFileSystem(fakeFileSystem).GetFromDirectory("app")
+	err = afero.WriteFile(fakeFileSystem, "app/kustomization.yaml", []byte(emptyFileContents), 0644)
+	if err != nil {
+		t.Errorf("Couldn't write file")
+	}
 
+	err = afero.WriteFile(fakeFileSystem, "app/kustomization.yml", []byte(emptyFileContents), 0644)
+	if err != nil {
+		t.Errorf("Couldn't write file")
+	}
+
+	_, err = NewContextFromFileSystem(fakeFileSystem).GetFromDirectory("app")
 	if err == nil {
 		t.Errorf("Expected error when reading directory that contains multiple kustomization files")
 	}
