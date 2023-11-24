@@ -139,7 +139,6 @@ K4134617231 --> K453883029
 K453883029[[./kubeaudit<br/><br/>kubeaudit-cron-job.yaml<br/>image-automation.yaml<br/>rbac.yaml]]
 K4134617231 --> K3736359115
 K3736359115 --> K3522928892
-K3522928892 --> K2925748861
 K3522928892 --> K1445474874
 K1445474874[[../rbac<br/><br/>service_account.yaml<br/>role.yaml<br/>role_binding.yaml<br/>leader_election_role.yaml<br/>leader_election_role_binding.yaml<br/>auth_proxy_service.yaml<br/>auth_proxy_role.yaml<br/>auth_proxy_role_binding.yaml<br/>auth_proxy_client_clusterrole.yaml]]
 K3522928892 --> K3160989825
