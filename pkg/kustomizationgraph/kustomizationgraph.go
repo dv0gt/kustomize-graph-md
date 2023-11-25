@@ -73,7 +73,7 @@ func (g *KustomizationGraph) addSubGraph(directory string, subGraphName string) 
 	}
 
 	if resourceFiles != "" {
-		markdown += addLine(start + "[[" + subGraphName + "<br/>" + resourceFiles + "]]")
+		markdown += addLine(start + "[[" + subGraphName + "<br/>#171;#171;#171; #187;#187;#187;" + resourceFiles + "]]")
 	} else {
 		markdown += addLine(start + "[[" + subGraphName + "]]")
 	}
