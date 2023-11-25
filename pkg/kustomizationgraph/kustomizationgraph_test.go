@@ -34,8 +34,8 @@ func assertSampleMarkdownGraph(t *testing.T, mode models.DisplayMode) {
 flowchart ` + mode.ToString() + `
 K2648915859 --> K3198009923
 K3198009923 --> K117322154
-K117322154[[./moduleA<br/>#171;#171;#171; #187;#187;#187;<br/>deploymentModuleA.yaml]]
-K3198009923[[../../base<br/>#171;#171;#171; #187;#187;#187;<br/>deployment.yaml<br/>namespace.yaml]]
+K117322154[[./moduleA<br/><br/>deploymentModuleA.yaml]]
+K3198009923[[../../base<br/><br/>deployment.yaml<br/>namespace.yaml]]
 K2648915859[[./production]]
 ` + "```"
 

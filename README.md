@@ -58,8 +58,8 @@ Run `kustomize-markdown` to get the following output as markdown:
 flowchart LR
 K2388409362 --> K1632387892
 K1632387892 --> K244167769
-K244167769[[./moduleA<br/>#171;#171;#171; #187;#187;#187;<br/>deploymentModuleA.yaml]]
-K1632387892[[../../base<br/>#171;#171;#171; #187;#187;#187;<br/>deployment.yaml<br/>namespace.yaml]]
+K244167769[[./moduleA<br/><br/>deploymentModuleA.yaml]]
+K1632387892[[../../base<br/><br/>deployment.yaml<br/>namespace.yaml]]
 K2388409362[[./production]]
 ```
 
@@ -71,8 +71,8 @@ Run `kustomize-markdown -tb` to get the following output as markdown:
 flowchart TB
 K2388409362 --> K1632387892
 K1632387892 --> K244167769
-K244167769[[./moduleA<br/>#171;#171;#171; #187;#187;#187;<br/>deploymentModuleA.yaml]]
-K1632387892[[../../base<br/>#171;#171;#171; #187;#187;#187;<br/>deployment.yaml<br/>namespace.yaml]]
+K244167769[[./moduleA<br/><br/>deploymentModuleA.yaml]]
+K1632387892[[../../base<br/><br/>deployment.yaml<br/>namespace.yaml]]
 K2388409362[[./production]]
 ```
 
@@ -82,47 +82,47 @@ K2388409362[[./production]]
 flowchart LR
 K3692039636 --> K4134617231
 K4134617231 --> K1073288559
-K1073288559[[./ingress-nginx<br/>#171;#171;#171; #187;#187;#187;<br/>./helm-release.yaml<br/>./network-policies.yaml]]
+K1073288559[[./ingress-nginx<br/><br/>./helm-release.yaml<br/>./network-policies.yaml]]
 K4134617231 --> K253602071
-K253602071[[./cert-manager<br/>#171;#171;#171; #187;#187;#187;<br/>./helm-release.yaml<br/>./network-policies.yaml]]
+K253602071[[./cert-manager<br/><br/>./helm-release.yaml<br/>./network-policies.yaml]]
 K4134617231 --> K3117942593
-K3117942593[[./reloader<br/>#171;#171;#171; #187;#187;#187;<br/>./helm-release.yaml<br/>./network-policy.yaml]]
+K3117942593[[./reloader<br/><br/>./helm-release.yaml<br/>./network-policy.yaml]]
 K4134617231 --> K1199196442
-K1199196442[[./elastic-logstash<br/>#171;#171;#171; #187;#187;#187;<br/>./config.yaml<br/>./secretprovider.yaml<br/>./statefulset.yaml]]
+K1199196442[[./elastic-logstash<br/><br/>./config.yaml<br/>./secretprovider.yaml<br/>./statefulset.yaml]]
 K4134617231 --> K1738802803
-K1738802803[[./fluent-bit<br/>#171;#171;#171; #187;#187;#187;<br/>./helm-release.yaml<br/>./secret-provider.yaml]]
+K1738802803[[./fluent-bit<br/><br/>./helm-release.yaml<br/>./secret-provider.yaml]]
 K4134617231 --> K3105005572
-K3105005572[[./kube-prometheus-stack<br/>#171;#171;#171; #187;#187;#187;<br/>./helm-release.yaml<br/>./secret-provider.yaml<br/>./network-policy.yaml]]
+K3105005572[[./kube-prometheus-stack<br/><br/>./helm-release.yaml<br/>./secret-provider.yaml<br/>./network-policy.yaml]]
 K4134617231 --> K888054092
-K888054092[[./prometheus-msteams<br/>#171;#171;#171; #187;#187;#187;<br/>./secretprovider.yaml<br/>./helm-release.yaml]]
+K888054092[[./prometheus-msteams<br/><br/>./secretprovider.yaml<br/>./helm-release.yaml]]
 K4134617231 --> K548728024
-K548728024[[./prometheus-pushgateway<br/>#171;#171;#171; #187;#187;#187;<br/>./helm-release.yaml]]
+K548728024[[./prometheus-pushgateway<br/><br/>./helm-release.yaml]]
 K4134617231 --> K2407379872
-K2407379872[[./flux-notification<br/>#171;#171;#171; #187;#187;#187;<br/>./msteams.yaml<br/>./alert.yaml]]
+K2407379872[[./flux-notification<br/><br/>./msteams.yaml<br/>./alert.yaml]]
 K4134617231 --> K2950914330
-K2950914330[[./kured<br/>#171;#171;#171; #187;#187;#187;<br/>./helm-release.yaml]]
+K2950914330[[./kured<br/><br/>./helm-release.yaml]]
 K4134617231 --> K453883029
-K453883029[[./kubeaudit<br/>#171;#171;#171; #187;#187;#187;<br/>kubeaudit-cron-job.yaml<br/>image-automation.yaml<br/>rbac.yaml]]
+K453883029[[./kubeaudit<br/><br/>kubeaudit-cron-job.yaml<br/>image-automation.yaml<br/>rbac.yaml]]
 K4134617231 --> K3736359115
 K3736359115 --> K3522928892
 K3522928892 --> K1445474874
-K1445474874[[../rbac<br/>#171;#171;#171; #187;#187;#187;<br/>service_account.yaml<br/>role.yaml<br/>role_binding.yaml<br/>leader_election_role.yaml<br/>leader_election_role_binding.yaml<br/>auth_proxy_service.yaml<br/>auth_proxy_role.yaml<br/>auth_proxy_role_binding.yaml<br/>auth_proxy_client_clusterrole.yaml]]
+K1445474874[[../rbac<br/><br/>service_account.yaml<br/>role.yaml<br/>role_binding.yaml<br/>leader_election_role.yaml<br/>leader_election_role_binding.yaml<br/>auth_proxy_service.yaml<br/>auth_proxy_role.yaml<br/>auth_proxy_role_binding.yaml<br/>auth_proxy_client_clusterrole.yaml]]
 K3522928892 --> K3160989825
-K3160989825[[../manager<br/>#171;#171;#171; #187;#187;#187;<br/>./secret-provider.yaml<br/>./manager.yaml]]
+K3160989825[[../manager<br/><br/>./secret-provider.yaml<br/>./manager.yaml]]
 K3522928892 --> K527266939
-K527266939[[../webhook<br/>#171;#171;#171; #187;#187;#187;<br/>manifests.yaml<br/>service.yaml]]
+K527266939[[../webhook<br/><br/>manifests.yaml<br/>service.yaml]]
 K3522928892 --> K1457530395
-K1457530395[[../certmanager<br/>#171;#171;#171; #187;#187;#187;<br/>certificate.yaml]]
+K1457530395[[../certmanager<br/><br/>certificate.yaml]]
 K3522928892 --> K1312330766
-K1312330766[[../prometheus<br/>#171;#171;#171; #187;#187;#187;<br/>monitor.yaml]]
+K1312330766[[../prometheus<br/><br/>monitor.yaml]]
 K3522928892[[./default]]
-K3736359115[[./operandi<br/>#171;#171;#171; #187;#187;#187;<br/>./image-automation.yaml<br/>./network-policy.yaml]]
+K3736359115[[./operandi<br/><br/>./image-automation.yaml<br/>./network-policy.yaml]]
 K4134617231 --> K3083283366
-K3083283366[[./dapr<br/>#171;#171;#171; #187;#187;#187;<br/>./helm-release.yaml<br/>./secretprovider.yaml<br/>./pod-monitor.yaml<br/>./network-policy.yaml]]
+K3083283366[[./dapr<br/><br/>./helm-release.yaml<br/>./secretprovider.yaml<br/>./pod-monitor.yaml<br/>./network-policy.yaml]]
 K4134617231 --> K2644734951
-K2644734951[[./azure-service-bus<br/>#171;#171;#171; #187;#187;#187;<br/>./metrics-cronjob.yaml]]
+K2644734951[[./azure-service-bus<br/><br/>./metrics-cronjob.yaml]]
 K4134617231 --> K1834586704
-K1834586704[[./aks<br/>#171;#171;#171; #187;#187;#187;<br/>./metrics-cronjob.yaml]]
-K4134617231[[../base<br/>#171;#171;#171; #187;#187;#187;<br/>./image-reflector-controller-patch.yaml<br/>./image-update-automation.yaml<br/>./namespaces.yaml<br/>./network-policies.yaml<br/>./roles.yaml<br/>./coredns.yaml]]
+K1834586704[[./aks<br/><br/>./metrics-cronjob.yaml]]
+K4134617231[[../base<br/><br/>./image-reflector-controller-patch.yaml<br/>./image-update-automation.yaml<br/>./namespaces.yaml<br/>./network-policies.yaml<br/>./roles.yaml<br/>./coredns.yaml]]
 K3692039636[[./dev-spoke]]
 ```
